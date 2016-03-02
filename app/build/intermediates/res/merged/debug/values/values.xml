@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/E:/ExpandTabView-master/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="black">#000000</color>
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+    <color name="no_color">#00000000</color>
+    <color name="popup_main_background">#FFFF00FF</color>
+    <color name="white">#ffffff</color>
+    <!-- From: file:/E:/ExpandTabView-master/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="expand_tab_eara_height">350dp</dimen>
+    <dimen name="expand_tab_item_height">35dp</dimen>
+    <dimen name="head_bar_height">35dp</dimen>
+    <!-- From: file:/E:/ExpandTabView-master/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">ExpandTabView</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="no_data">没有资源信息</string>
+    <!-- From: file:/E:/ExpandTabView-master/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="PopupWindowAnimation">  
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>  
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>  
+    </style>
+</resources>
