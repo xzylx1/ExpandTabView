@@ -12,6 +12,14 @@ import com.example.expandtabview.R;
 
 public class ViewRight extends RelativeLayout implements ViewBaseAction{
 
+	public interface OnSelectListener {														     //提供列表item选中回调接口
+		public void getValue(String distance, String showText);
+	}
+
+	public void setOnSelectListener(OnSelectListener onSelectListener) {
+		mOnSelectListener = onSelectListener;
+	}
+
 	private ListView mListView;
 	private final String[] items = new String[] { "item1", "item2", "item3", "item4", "item5", "item6" };//显示字段
 	private final String[] itemsVaule = new String[] { "1", "2", "3", "4", "5", "6" };//隐藏id
@@ -69,14 +77,6 @@ public class ViewRight extends RelativeLayout implements ViewBaseAction{
 				}
 			}
 		});
-	}
-
-	public void setOnSelectListener(OnSelectListener onSelectListener) {
-		mOnSelectListener = onSelectListener;
-	}
-
-	public interface OnSelectListener {
-		public void getValue(String distance, String showText);
 	}
 
 	@Override

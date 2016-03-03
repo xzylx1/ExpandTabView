@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class ExpandTabView extends LinearLayout implements OnDismissListener {
 
-
 	/**
 	 * 自定义tabitem点击回调接口
 	 */
@@ -29,13 +28,13 @@ public class ExpandTabView extends LinearLayout implements OnDismissListener {
 	}
 
 	/**
-	 * 设置tabitem的点击监听事件
+	 * 设置tabitem的点击监听事件（整个tab）
 	 */
 	public void setOnButtonClickListener(OnButtonClickListener l) {
 		mOnButtonClickListener = l;
 	}
 
-	private OnButtonClickListener mOnButtonClickListener;									//定义btn的监听事件
+	private OnButtonClickListener mOnButtonClickListener;									//声明监听事件（整个tab）
 	private ToggleButton selectedButton;														//存入选中btn状态
 	private ArrayList<String> mTextArray = new ArrayList<String>();							//数据列表名称
 	private ArrayList<RelativeLayout> mViewArray = new ArrayList<RelativeLayout>();			//按钮各布局PopWindow布局集合
@@ -120,7 +119,7 @@ public class ExpandTabView extends LinearLayout implements OnDismissListener {
 
 			r.setBackgroundColor(mContext.getResources().
 					getColor(R.color.popup_main_background));							//设置PopWindow的背景颜色
-			tButton.setOnClickListener(new OnClickListener() {								//设置按钮的监听事件
+			tButton.setOnClickListener(new OnClickListener() {								//设置单个按钮的监听事件
 				@Override
 				public void onClick(View view) {
 					// initPopupWindow();
@@ -133,7 +132,7 @@ public class ExpandTabView extends LinearLayout implements OnDismissListener {
 					selectPosition = (Integer) selectedButton.getTag();					//保存选中的按钮id
 					startAnimation();														//初始化PopWindow
 					if (mOnButtonClickListener != null && tButton.isChecked()) {
-						mOnButtonClickListener.onClick(selectPosition);
+						mOnButtonClickListener.onClick(selectPosition);				//供activity监听回调
 						Log.e("000", "onClick: 111111111111111111111111");
 					}
 				}
@@ -170,8 +169,11 @@ public class ExpandTabView extends LinearLayout implements OnDismissListener {
 		View tView = mViewArray.get(selectPosition).getChildAt(0);						//选中该按钮id对应的PopWindow
 		if (tView instanceof ViewBaseAction) {											//如果是实现了VBA的viewLf.Md.Ri.
 			ViewBaseAction f = (ViewBaseAction) tView;										//强转VBA
-			f.show();																		//回调该Veiw的show方法
+			f.show();																		//回调该Veiw(viewLf.Md.Ri.)的show方法
 		}
+//		if(tView instanceof ViewMiddle){
+//			((ViewMiddle) tView).getShowText()
+//		}
 		if (popupWindow.getContentView() != mViewArray.get(position)) {					//如果当前PopWindow非所选btn的pw
 			popupWindow.setContentView(mViewArray.get(position));						//设置PopWindow为所选btn的pw
 		}
@@ -199,7 +201,7 @@ public class ExpandTabView extends LinearLayout implements OnDismissListener {
 		View tView = mViewArray.get(selectPosition).getChildAt(0);							//选中该按钮id对应的PopWindow
 		if (tView instanceof ViewBaseAction) {												//如果是实现了VBA的viewLf.Md.Ri.
 			ViewBaseAction f = (ViewBaseAction) tView;											//强转VBA
-			f.hide();																			//回调该Veiw的hide方法
+			f.hide();																			//回调该Veiw(viewLf.Md.Ri.)的hide方法
 		}
 	}
 
