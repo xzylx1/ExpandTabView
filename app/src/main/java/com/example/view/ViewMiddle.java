@@ -34,7 +34,6 @@ public class ViewMiddle extends LinearLayout implements ViewBaseAction {
 	private TextAdapter plateListViewAdapter;											    	//依附列listview适配器
 	private OnSelectListener mOnSelectListener;											    	//回调接口
 	private int tEaraPosition = 0;											    				//保存首列item中的position
-	private int tempEaraPosition = 0;											    			//保存首列item中的缓冲position
 	private int tBlockPosition = 0;											    				//保存依附列item选中的position
 	private String showString = "不限";											    			//需要传递/显示的内容
 
@@ -105,8 +104,6 @@ public class ViewMiddle extends LinearLayout implements ViewBaseAction {
 					@Override
 					public void onItemClick(View view, int position) {						//实现回调方法
 						if (position < children.size()) {
-							tempEaraPosition = tEaraPosition;
-							tEaraPosition = position;
 							childrenItem.clear();												//依附列数据源清空
 							childrenItem.addAll(children.get(position));						//依附列数据源更新
 							plateListViewAdapter.notifyDataSetChanged();						//更新依附列数据显示
@@ -127,8 +124,6 @@ public class ViewMiddle extends LinearLayout implements ViewBaseAction {
 
 					@Override
 					public void onItemClick(View view, final int position) {					//实现回调方法
-						tempEaraPosition = tEaraPosition;
-						tBlockPosition = position;
 						showString = childrenItem.get(position);								//传回依附列的item内容
 						if (mOnSelectListener != null) {
 							mOnSelectListener.getValue(showString);							//回传activity选中item内容
@@ -162,8 +157,6 @@ public class ViewMiddle extends LinearLayout implements ViewBaseAction {
 	public void hide() {
 		// TODO Auto-generated method stub
 		Log.e("-------------", "mid: hide");
-		earaListViewAdapter.setSelectedPosition(tempEaraPosition);				//同步更新首列数据显示
-		plateListViewAdapter.setSelectedPosition(tBlockPosition);				//同步更新依附列数据显示
 	}
 
 	@Override
